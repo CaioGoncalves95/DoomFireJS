@@ -84,4 +84,28 @@ function createFireSource() {
     }
 }
 
+function ceaseFireSource() {
+    for(let column = 0; column <= fireWidth; column++) {
+        const overflowPixelIndex = fireWidth * fireHeight
+        const pixelIndex = (overflowPixelIndex - fireWidth) + column
+
+        firePixelsArray[pixelIndex] = 0
+    }
+}
+
+function decreaseFireSource() {
+    for (let column = 0; column <= fireWidth; column++) {
+      const overflowPixelIndex = fireWidth * fireHeight
+      const pixelIndex = (overflowPixelIndex - fireWidth) + column
+      const currentFireIntensity = firePixelsArray[pixelIndex]
+  
+      if (currentFireIntensity > 0) {
+        const decay = Math.floor(Math.random() * 14)
+        const newFireIntensity = currentFireIntensity - decay >= 0 ? currentFireIntensity - decay : 0
+  
+        firePixelsArray[pixelIndex] = newFireIntensity
+      }
+    }
+  }
+
 start()
